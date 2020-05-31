@@ -23,6 +23,38 @@ function showChoropleth(education, counties) {
     "hsl(286, 100%, 30%)"
   ];
 
+  const legend = d3.select("main")
+    .append("svg")
+    .attr("id", "legend")
+    .attr("width", 140)
+    .attr("height", 40);
+
+  const xScale = d3.scaleLinear()
+    .domain([0, 70])
+    .range([0, 140])
+
+  legend.selectAll("rect")
+    .data([0, 10, 20, 30, 40, 50, 60])
+    .enter()
+    .append("rect")
+    .attr("x", d => xScale(d))
+    .attr("y", 0)
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", (d, i) => colors[i]);
+
+  legend.selectAll("text")
+    .data([10, 20, 30, 40, 50, 60])
+    .enter()
+    .append("text")
+    .attr("x", d => xScale(d))
+    .attr("y", 30)
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .style("font-size", "12px")
+    .text(d => d);
+
+
   const svg = d3.select("main")
     .append("svg")
     .attr("width", w)
@@ -45,5 +77,10 @@ function showChoropleth(education, counties) {
         boh > 10 ? colors[5] :
         colors[6];
     })
-    .attr("d", path);
+    .attr("d", path)
+    .attr("data-fips", d => d.id)
+    .attr("data-education", d => {
+      const found = education.find(element => element.fips === d.id);
+      return found.bachelorsOrHigher;
+    });
 }
