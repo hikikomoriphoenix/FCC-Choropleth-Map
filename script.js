@@ -14,13 +14,13 @@ function showChoropleth(education, counties) {
   const path = d3.geoPath();
 
   const colors = [
-    "hsl(286, 100%, 80%)",
-    "hsl(286, 100%, 70%)",
+    "hsl(286, 100%, 75%)",
+    "hsl(286, 100%, 67%)",
     "hsl(286, 100%, 60%)",
+    "hsl(286, 100%, 55%)",
     "hsl(286, 100%, 50%)",
-    "hsl(286, 100%, 40%)",
-    "hsl(286, 100%, 30%)",
-    "hsl(286, 100%, 20%)"
+    "hsl(286, 100%, 45%)",
+    "hsl(286, 100%, 40%)"
   ];
 
   const legend = d3.select("main")
