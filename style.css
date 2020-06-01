@@ -13,3 +13,13 @@ main {
   display: inline-block;
   margin-top: 50px;
 }
+
+#tooltip {
+  position: absolute;
+  background-color: rgb(50, 238, 19);
+  pointer-events: none;
+  font-size: 12px;
+  padding: 10px;
+  box-shadow: 5px 5px 4px rgba(50, 50, 50, 0.5);
+  color: black;
+}

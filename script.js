@@ -82,5 +82,23 @@ function showChoropleth(education, counties) {
     .attr("data-education", d => {
       const found = education.find(element => element.fips === d.id);
       return found.bachelorsOrHigher;
+    })
+    .on("mouseover", d => {
+      const countyEduc = education.find(element => element.fips === d.id);
+
+      tooltip.style("opacity", 1)
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top", (d3.event.pageY - 28) + "px")
+        .attr("data-education", countyEduc.bachelorsOrHigher)
+        .html(`${countyEduc.area_name}, ${countyEduc.state}<br>
+          Bachelors Or Higher: ${countyEduc.bachelorsOrHigher}%`);
+    })
+    .on("mouseout", d => {
+      tooltip.style("opacity", 0);
     });
+
+  const tooltip = d3.select("main")
+    .append("div")
+    .attr("id", "tooltip")
+    .style("opacity", 0);
 }
