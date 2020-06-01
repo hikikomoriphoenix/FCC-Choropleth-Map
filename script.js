@@ -14,13 +14,13 @@ function showChoropleth(education, counties) {
   const path = d3.geoPath();
 
   const colors = [
-    "hsl(286, 100%, 90%)",
     "hsl(286, 100%, 80%)",
     "hsl(286, 100%, 70%)",
     "hsl(286, 100%, 60%)",
     "hsl(286, 100%, 50%)",
     "hsl(286, 100%, 40%)",
-    "hsl(286, 100%, 30%)"
+    "hsl(286, 100%, 30%)",
+    "hsl(286, 100%, 20%)"
   ];
 
   const legend = d3.select("main")
@@ -50,7 +50,7 @@ function showChoropleth(education, counties) {
     .attr("x", d => xScale(d))
     .attr("y", 30)
     .attr("text-anchor", "middle")
-    .attr("fill", "black")
+    .attr("fill", "white")
     .style("font-size", "12px")
     .text(d => d);
 
@@ -69,12 +69,12 @@ function showChoropleth(education, counties) {
     .attr("fill", d => {
       const found = education.find(element => element.fips === d.id);
       const boh = found.bachelorsOrHigher;
-      return boh > 60 ? colors[0] :
-        boh > 50 ? colors[1] :
-        boh > 40 ? colors[2] :
-        boh > 30 ? colors[3] :
-        boh > 20 ? colors[4] :
-        boh > 10 ? colors[5] :
+      return boh > 60 ? colors[5] :
+        boh > 50 ? colors[4] :
+        boh > 40 ? colors[3] :
+        boh > 30 ? colors[2] :
+        boh > 20 ? colors[1] :
+        boh > 10 ? colors[0] :
         colors[6];
     })
     .attr("d", path)
